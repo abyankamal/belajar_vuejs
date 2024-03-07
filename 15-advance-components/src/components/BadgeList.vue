@@ -1,9 +1,6 @@
 <template>
   <section>
     <base-card>
-      <template #header>
-        <h2>Available Badges</h2>
-      </template>
       <template #default>
         <ul>
           <li>
