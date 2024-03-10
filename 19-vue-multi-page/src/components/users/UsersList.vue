@@ -1,6 +1,12 @@
 <template>
+  <button @click="movePages">Pindah Halaman</button>
   <ul>
-    <user-item v-for="user in users" :key="user.id" :name="user.fullName" :role="user.role"></user-item>
+    <user-item
+      v-for="user in users"
+      :key="user.id"
+      :name="user.fullName"
+      :role="user.role"
+    ></user-item>
   </ul>
 </template>
 
@@ -12,6 +18,11 @@ export default {
     UserItem,
   },
   inject: ['users'],
+  methods: {
+    movePages() {
+      this.$router.push('/teams');
+    },
+  },
 };
 </script>
 

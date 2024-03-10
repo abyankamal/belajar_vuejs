@@ -35,11 +35,6 @@ export default {
       users: this.users,
     };
   },
-  methods: {
-    setActivePage(page) {
-      this.activePage = page;
-    },
-  },
 };
 </script>
 
