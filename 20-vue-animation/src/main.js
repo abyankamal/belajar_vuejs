@@ -1,3 +1,14 @@
+// import { createApp } from 'vue';
+
+// import App from './App.vue';
+// import BaseModal from './components/BaseModal.vue';
+
+// const app = createApp(App);
+
+// app.component('base-modal', BaseModal);
+
+// app.mount('#app');
+
 import { createApp } from 'vue';
 import { createRouter, createWebHistory } from 'vue-router';
 
@@ -10,8 +21,8 @@ const router = createRouter({
   history: createWebHistory(),
   routes: [
     { path: '/', component: AllUsers },
-    { path: '/goals', component: CourseGoals }
-  ]
+    { path: '/goals', component: CourseGoals },
+  ],
 });
 
 const app = createApp(App);
@@ -20,8 +31,6 @@ app.component('base-modal', BaseModal);
 
 app.use(router);
 
-router.isReady().then(function() {
+router.isReady().then(function () {
   app.mount('#app');
 });
-
-
