@@ -18,14 +18,14 @@ export default {
     BaseContainer,
     TheCounter,
     ChangeCounter,
-    FavoriteValue,
+    FavoriteValue
   },
   methods: {
     addOne() {
       // this.$store.dispatch('increase', { value: 10 });
       this.$store.dispatch({
         type: 'increase',
-        value: 10,
+        value: 10
       });
     },
   },

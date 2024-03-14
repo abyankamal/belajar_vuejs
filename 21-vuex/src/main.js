@@ -6,7 +6,7 @@ import App from './App.vue';
 const store = createStore({
   state() {
     return {
-      counter: 0,
+      counter: 0
     };
   },
   mutations: {
@@ -15,17 +15,18 @@ const store = createStore({
     },
     increase(state, payload) {
       state.counter = state.counter + payload.value;
-    },
+    }
   },
   actions: {
     increment(context) {
-      setTimeout(() => {
+      setTimeout(function() {
         context.commit('increment');
       }, 2000);
     },
     increase(context, payload) {
+      console.log(context);
       context.commit('increase', payload);
-    },
+    }
   },
   getters: {
     finalCounter(state) {
@@ -40,8 +41,8 @@ const store = createStore({
         return 100;
       }
       return finalCounter;
-    },
-  },
+    }
+  }
 });
 
 const app = createApp(App);
