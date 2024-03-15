@@ -1,6 +1,6 @@
 <template>
   <button @click="inc">Add 2</button>
-  <button @click="increase({value: 11})">Add 11</button>
+  <button @click="increase({ value: 11 })">Add 11</button>
 </template>
 
 <script>
@@ -12,10 +12,10 @@ export default {
     //   this.$store.dispatch('increment');
     // }
     // ...mapActions(['increment', 'increase'])
-    ...mapActions({
+    ...mapActions('numbers', {
       inc: 'increment',
-      increase: 'increase'
-    })
-  }
-}
+      increase: 'increase',
+    }),
+  },
+};
 </script>
