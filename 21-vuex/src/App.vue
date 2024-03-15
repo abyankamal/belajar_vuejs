@@ -25,6 +25,11 @@ export default {
     FavoriteValue,
     UserAuth,
   },
+  computed: {
+    isAuth() {
+      return this.$store.getters.userIsAuthenticated;
+    },
+  },
   methods: {
     addOne() {
       // this.$store.dispatch('increase', { value: 10 });
@@ -32,11 +37,6 @@ export default {
         type: 'numbers/increase',
         value: 10,
       });
-    },
-  },
-  computed: {
-    isAuth() {
-      return this.$store.getters.userIsAutenticated;
     },
   },
 };
