@@ -16,13 +16,13 @@ const router = createRouter({
       path: '/coaches/:id',
       component: CoachDetail,
       children: [
-        { path: 'contact', component: ContactCoach }, // /coaches/c1/contact
-      ],
+        { path: 'contact', component: ContactCoach } // /coaches/c1/contact
+      ]
     },
     { path: '/register', component: CoachRegistation },
     { path: '/requests', component: RequestsReceived },
-    { path: '/:notFound(.*)', component: NotFound },
-  ],
+    { path: '/:notFound(.*)', component: NotFound }
+  ]
 });
 
 export default router;
