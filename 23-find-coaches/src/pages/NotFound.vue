@@ -1,3 +1,3 @@
-<template>
-  <div>Not Found</div>
+<template lang="">
+  <div>hhhh</div>
 </template>
