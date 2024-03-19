@@ -18,14 +18,14 @@ const router = createRouter({
       component: CoachDetail,
       props: true,
       children: [
-        { path: 'contact', component: ContactCoach }, // /coaches/c1/contact
-      ],
+        { path: 'contact', component: ContactCoach } // /coaches/c1/contact
+      ]
     },
     { path: '/register', component: CoachRegistation },
     { path: '/requests', component: RequestsReceived },
     { path: '/auth', component: UserAuth },
-    { path: '/:notFound(.*)', component: NotFound },
-  ],
+    { path: '/:notFound(.*)', component: NotFound }
+  ]
 });
 
 export default router;
