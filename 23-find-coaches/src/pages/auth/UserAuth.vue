@@ -1,8 +1,9 @@
 <template>
   <div>
-    <base-dialog :show="!!error" title="An error occured" @close="handleError">
+    <base-dialog :show="!!error" title="An error occurred" @close="handleError">
+      <p>{{ error }}</p>
     </base-dialog>
-    <base-dialog :show="isLoading" title="Autenticating...." fixed>
+    <base-dialog :show="isLoading" title="Authenticating..." fixed>
       <base-spinner></base-spinner>
     </base-dialog>
     <base-card>
@@ -15,14 +16,11 @@
           <label for="password">Password</label>
           <input type="password" id="password" v-model.trim="password" />
         </div>
-        <p v-if="!formIsValid">
-          Please enter a valid email and password (must be at least 6 characters
-          long).
-        </p>
+        <p
+          v-if="!formIsValid"
+        >Please enter a valid email and password (must be at least 6 characters long).</p>
         <base-button>{{ submitButtonCaption }}</base-button>
-        <base-button type="button" mode="flat" @click="switchAuthMode">{{
-          switchModeButtonCaption
-        }}</base-button>
+        <base-button type="button" mode="flat" @click="switchAuthMode">{{ switchModeButtonCaption }}</base-button>
       </form>
     </base-card>
   </div>
@@ -83,9 +81,10 @@ export default {
         }
         const redirectUrl = '/' + (this.$route.query.redirect || 'coaches');
         this.$router.replace(redirectUrl);
-      } catch (error) {
-        this.error = error.message || 'Something went wrong';
+      } catch (err) {
+        this.error = err.message || 'Failed to authenticate, try later.';
       }
+
       this.isLoading = false;
     },
     switchAuthMode() {
