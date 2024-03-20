@@ -21,13 +21,6 @@ export default {
       );
       throw error;
     }
-
-    // console.log(responseData);
-    // context.commit('setUser', {
-    //   token: responseData.idToken,
-    //   userId: responseData.localId,
-    //   tokenExpiration: responseData.expiresIn,
-    // });
   },
   async signup(context, payload) {
     const response = await fetch(
@@ -57,6 +50,13 @@ export default {
       token: responseData.idToken,
       userId: responseData.localId,
       tokenExpiration: responseData.expiresIn,
+    });
+  },
+  logout(context) {
+    context.commit('setUser', {
+      token: null,
+      userId: null,
+      tokenExpiration: null,
     });
   },
 };
