@@ -1,64 +1,84 @@
 <template>
   <section class="container">
-    <h2>{{ userName }}</h2>
-    <h2>{{ uAge }}</h2>
-    <button @click="setAge">Add Age</button>
+    <user-data class="test" :first-name="firstName" :last-name="lastName"></user-data>
+    <button @click="setAge">Change Age</button>
     <div>
-      <input type="text" placeholder="FirstName" v-model="firstName" />
-      <input type="text" placeholder="LastName" v-model="lastName" />
+      <input type="text" placeholder="First Name" v-model="firstName" />
+      <input type="text" placeholder="Last Name" ref="lastNameInput" />
+      <button @click="setLastName">Set Last Name</button>
     </div>
   </section>
 </template>
 
 <script>
-// import { reactive } from 'vue';
-import { ref, computed, watch } from 'vue';
+import { ref, computed, watch, provide } from 'vue';
+import UserData from './components/UserData.vue';
 
 export default {
+  components: {
+    UserData
+  },
   setup() {
     // const uName = ref('Maximilian');
+    const firstName = ref('');
+    const lastName = ref('');
+    const lastNameInput = ref(null);
     const uAge = ref(31);
     // const user = reactive({
-    //   userName: 'Maximilian',
+    //   name: 'Maximilian',
     //   age: 31,
     // });
 
-    // setTimeout(function () {
-    //   // uName.value = 'Max';
-    //   // uAge.value = 32;
-    //   user.userName = 'Max';
-    //   user.age = 32;
-    // }, 2000);
+    provide('userAge', uAge);
 
-    function setAgeValue() {
-      return uAge.value++;
-    }
-
-    // return { userName: uName, age: uAge };
-    // return { user: user, setAge: setAgeValue };
-
-    const firstName = ref('');
-    const lastName = ref('');
-
-    const userName = computed(() => {
+    const uName = computed(function() {
       return firstName.value + ' ' + lastName.value;
     });
 
-    watch([uAge, userName], (newValue, oldValue) => {
-      console.log('Old Age : ' + oldValue[0]);
-      console.log('New Age :' + newValue[0]);
-      console.log('Old Name :' + oldValue[1]);
-      console.log('New Name :' + newValue[1]);
+     watch([uAge, uName], function(newValues, oldValues) {
+      console.log('Old age: ' + oldValues[0]);
+      console.log('New age: ' + newValues[0]);
+      console.log('Old name: ' + oldValues[1]);
+      console.log('New name: ' + newValues[1]);
     });
 
+    function setNewAge() {
+      uAge.value = 33;
+    }
+
+    function setLastName() {
+      lastName.value = lastNameInput.value.value;
+    }
+
     return {
-      firstName: firstName,
-      lastName: lastName,
-      uAge: uAge,
-      setAge: setAgeValue,
-      userName: userName,
+      userName: uName,
+      age: uAge,
+      setAge: setNewAge,
+      firstName,
+      lastName,
+      lastNameInput,
+      setLastName
     };
   },
+  // data() {
+  //   return {
+  //     userName: 'Maximilian',
+  //     age: 31
+  //   };
+  // },
+  // methods: {
+  //   setNewAge() {
+  //     this.age = 32;
+  //   }
+  // },
+  // watch: {
+  //   age(val) {
+  //     console.log(val);
+  //   }
+  // }
+  // provide() {
+  //   return { age: this.age };
+  // }
 };
 </script>
 
